@@ -1,14 +1,15 @@
 #include <iostream>
+#include <array>
 
 int main(){
 
-    int score {30};
-    int& playerscore = score;
+    std::array<int, 5> values {1, 2, 3, 4, 5};
+    std::array<int, 5>& num = values;
+    for(int i = 0; i < values.size(); i++){
+        std::cout << num[i]*2 << " ";
+    }
 
-    playerscore += 5;
-
-    std::cout << score << std::endl;
-    std::cout << playerscore << std::endl;
+    std::cout << std::endl;
 
     return 0;
 }
