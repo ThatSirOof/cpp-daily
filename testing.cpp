@@ -1,12 +1,17 @@
 #include <iostream>
+#include <string>
 #include <array>
+#include <cctype>
 
 int main(){
 
-    std::array<int, 5> values {1, 2, 3, 4, 5};
-    std::array<int, 5>& num = values;
-    for(int i = 0; i < values.size(); i++){
-        std::cout << num[i]*2 << " ";
+    std::array<std::string, 4> coins {
+        "pennies", "nickels", "dime", "quarters"
+    };
+    std::array<std::string, 4>& upper = coins;
+    for(int i = 0; i < coins.size(); i++){
+        upper[i][0] = std::toupper(upper[i][0]);
+        std::cout << upper [i] << " ";
     }
 
     std::cout << std::endl;
