@@ -2,24 +2,21 @@
 #include <string>
 #include <cctype>
 
+struct Point2D{
+    int x{};
+    int y{};
+
+};
+
+void print_point(const Point2D& Coordinate){
+    std::cout << Coordinate.x << ", " << Coordinate.y << std::endl;
+}
+
 int main(){
 
-    std::string text{};
-    int count{0};
+    Point2D point{5, 10};
 
-    std::cout << "Write a random text: ";
-    std::getline(std::cin, text);
-
-    for(const char& recieve: text){
-
-        char vowels = std::tolower(recieve);
-
-        if( vowels == 'a' || vowels == 'e' || vowels == 'i'|| vowels == 'o'|| vowels == 'u'){
-            count++;    
-        }
-    }
-
-    std::cout << "There are " << count << " vowels!\n";
+    print_point(point);
 
     return 0;
 }
