@@ -1,64 +1,60 @@
 #include <iostream>
-#include <math.h>
 #include <string>
 
-struct Product{
+struct Student{
     std::string name{};
-    double price{};
-    double quantity{};
+    int age{};
+    double average_grade{};
 };
 
-void print_product(const Product& information);
-double calculate_total_price(const Product& item, double discount);
-int update_quantity(Product& item, int new_quantity);
-double increase_price(Product& item, double increase);
+void print_student(const Student& info);
+double update_average(Student& student, double new_average);
+int birthday(Student& student);
+bool compare_average(const Student& first, const Student& second);
+
 
 int main(){
 
-    double discount{0.15};
-    double upcount{};
-    int quantity{};
-    Product vegetable{};
+    Student info_1;
+    Student info_2;
 
-    std::cout << "Pick a vegetable, then give it a price, and a quantity: ";
-    std::cin >> vegetable.name >> vegetable.price >> vegetable.quantity;
-    print_product(vegetable);
+    double new_average {5.5};
 
-    std::cout << "The total with a discount is: " << calculate_total_price(vegetable, discount) << std::endl;
+    std::cout << "Enter student 1's name, age and grade: ";
+    std::cin >> info_1.name >> info_1.age >> info_1.average_grade;
+    print_student(info_1);
 
-    std::cout << "\nHow many more quantity would you like to stock more?: ";
-    std::cin >> quantity;
-    std::cout << "The new quantity is: " << update_quantity(vegetable, quantity) << std::endl;
+    std::cout << "Enter student 2's name, age and grade: ";
+    std::cin >> info_2.name >> info_2.age >> info_2.average_grade;
+    print_student(info_2);
 
-    std::cout << "\nHow many percentage do you want to increase the price?: ";
-    std::cin >> upcount;
-    std::cout << "The new price is: " << increase_price(vegetable, upcount) << std::endl;
+    std::cout << "Student 2 new updated average is: " << update_average(info_2, new_average) << std::endl;
+    
+    if(compare_average(info_1, info_2)){
+        std::cout << "The averages are equal\n";
+    }  
+    else{
+        std::cout << "The averages are different\n";
+    }
+
+    std::cout << "After Student 1's birthday: " << birthday(info_1) << std::endl;
+
 
     return 0;
 }
 
-void print_product(const Product& information){
-    std::cout << 
-    "This is a " << information.name << 
-    " and it is worth $" << information.price <<
-    " with " << information. quantity << " in stock." << std::endl;
+void print_student(const Student& info){
+    std::cout << info.name << " " << info.age << " " << info.average_grade << std::endl;
 }
 
-double calculate_total_price(const Product& item, double discount){
-    double total{item.price};
-
-    total -= item.price * discount;
-    return total;
+double update_average(Student& student, double new_average){
+    return student.average_grade += new_average;
 }
 
-int update_quantity(Product& item, int new_quantity){
-    return item.quantity += + new_quantity;
+bool compare_average(const Student& first, const Student& second){
+    return first.average_grade == second.average_grade;
 }
 
-double increase_price(Product& item, double increase){
-    return item.price += item.price * (increase / 100.0);
+int birthday(Student& student){
+    return student.age+= 1;
 }
-
-
-
-
