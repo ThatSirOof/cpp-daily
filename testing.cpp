@@ -1,60 +1,60 @@
 #include <iostream>
 #include <string>
 
-struct Student{
+struct Sword{
     std::string name{};
-    int age{};
-    double average_grade{};
+    double damage{};
 };
 
-void print_student(const Student& info);
-double update_average(Student& student, double new_average);
-int birthday(Student& student);
-bool compare_average(const Student& first, const Student& second);
+struct Player{
+    std::string name{};
+    double health{};
+    Sword sword{};
+};
 
+    void print_sword(const Sword& sword_info);
+    void print_player(const Player& player_info);
+    int heal_player(Player& player_info, int amount);
+    double upgrade_sword(Sword& sword_info, double bonus_dmg);
 
 int main(){
 
-    Student info_1;
-    Student info_2;
+    int healing {30};
+    double bonus_dmg {75.4};
 
-    double new_average {5.5};
+    Player Player_1{"Jay", 100,{"Beansprout", 99}};
+    std::cout << "Sword info: ";
+    print_sword(Player_1.sword);
 
-    std::cout << "Enter student 1's name, age and grade: ";
-    std::cin >> info_1.name >> info_1.age >> info_1.average_grade;
-    print_student(info_1);
+    std::cout << "Player and sword info: ";
+    print_player(Player_1);
 
-    std::cout << "Enter student 2's name, age and grade: ";
-    std::cin >> info_2.name >> info_2.age >> info_2.average_grade;
-    print_student(info_2);
+    std::cout << "After healing: " << heal_player(Player_1, healing) << std::endl;
+    std::cout << "After additional damage to the sword: " << upgrade_sword(Player_1.sword, bonus_dmg) << std::endl;
 
-    std::cout << "Student 2 new updated average is: " << update_average(info_2, new_average) << std::endl;
-    
-    if(compare_average(info_1, info_2)){
-        std::cout << "The averages are equal\n";
-    }  
-    else{
-        std::cout << "The averages are different\n";
-    }
-
-    std::cout << "After Student 1's birthday: " << birthday(info_1) << std::endl;
-
+    std::cout << "New Player and sword info: ";
+    print_player(Player_1);
 
     return 0;
 }
 
-void print_student(const Student& info){
-    std::cout << info.name << " " << info.age << " " << info.average_grade << std::endl;
-}
+    void print_sword(const Sword& sword_info){
+        std::cout << sword_info.name <<" "<< sword_info.damage << std::endl;
+    }
 
-double update_average(Student& student, double new_average){
-    return student.average_grade += new_average;
-}
+    void print_player(const Player& player_info){
+        std::cout << player_info.name << " " << player_info.health << " " 
+        << player_info.sword.name <<" "<< player_info.sword.damage << std::endl;
+    }
 
-bool compare_average(const Student& first, const Student& second){
-    return first.average_grade == second.average_grade;
-}
+    int heal_player(Player& player_info, int amount){
+        return player_info.health += amount;
+    }
 
-int birthday(Student& student){
-    return student.age+= 1;
-}
+    double upgrade_sword(Sword& sword_info, double bonus_dmg){
+        return sword_info.damage += bonus_dmg;
+    }
+    
+    
+    
+
