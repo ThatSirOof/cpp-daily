@@ -1,39 +1,32 @@
 #include <iostream>
 #include <string>
 
-enum class Comparison{
-    Less, Equal, Greater
+enum class TrafficState{
+
+    Green, Yellow, Red
+
 };
 
-Comparison compare(int a, int b){
-    if (a < b)
-        return Comparison::Less;
-    else if (a > b)
-        return Comparison::Greater;
-    else
-        return Comparison::Equal;
-}
+void driver_behavior(TrafficState state){
 
-void print(Comparison result){
-    switch (result){
-        case Comparison::Less:
-            std::cout << "Less" << std::endl;
+    switch(state){
+        case TrafficState::Green:
+            std::cout << "Go\n";
             break;
-        case Comparison::Greater:
-            std::cout << "Greater" << std::endl;
+        case TrafficState::Yellow:
+            std::cout << "Slow down\n";
             break;
-        case Comparison::Equal:
-            std::cout << "Equal" << std::endl;
-            break;      
+        case TrafficState::Red:
+            std::cout << "STOP\n";
+            break;    
     }
 }
 
-
 int main(){
 
-    print(compare(6,7));
-    print(compare(100, 9));
-    print(compare(128, 128));
+    driver_behavior(TrafficState::Green);
+    driver_behavior(TrafficState::Yellow);
+    driver_behavior(TrafficState::Red);
 
     return 0; 
 }
